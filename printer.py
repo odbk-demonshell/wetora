@@ -1,16 +1,30 @@
 #!/usr/bin/env python
 import pyfiglet 
 from sty import fg, bg, ef, rs
+import sys
 
 class printer:
 	def banner(self, brand, user, team):
 		ascii_banner = pyfiglet.figlet_format(brand) 
 		print(ascii_banner)
-		print("                 "+user+" "+bg(255,10,10)+ fg.black + team + fg.rs + bg.rs + "\r\n\r\n")
+		print("                 "+user+" "+bg.blue+ fg.black + team + fg.rs + bg.rs + "\r\n\r\n")
 	
 	def error(self, message):
 		result = bg(255, 10, 10) + fg.black + message + fg.rs + bg.rs
 		print(result)
+
+	def highlight(self, message, info):
+		result =  message + fg.green + info + fg.rs 
+		print(result)
+
+	def ehighlight(self, message, info):
+		result =  message + fg.red + info + fg.rs 
+		print(result)
+
+	def equit(self):
+		result =   fg.red + "Quiting..." + fg.rs 
+		print(result)
+		sys.exit()
 
 
 

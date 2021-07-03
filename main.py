@@ -3,15 +3,25 @@ import sys
 from printer import printer
 from transformations import transformations
 
-intro = printer()
-intro.banner("Wetora","ODBK", "DEMONSHELL")
+info = printer()
+info.banner("Wetora","ODBK", "DEMONSHELL")
 
 # Defining a target 
 if len(sys.argv) == 2: 
     target = sys.argv[1]
-    print("Target: "+ target)
+    info.highlight("Target: ", target)
 else: 
     print("Invalid ammount of Argument") 
 
 scope = transformations()
-scope.domainToOrg(target)
+try:
+    name = scope.domainToOrg(target)
+    if( name ):
+        info.highlight("Organization Name: ", name)
+    else:
+        info.ehighlight("Organization Name: ", "NULL")
+        info.equit()
+
+except:
+    info.error("  WHOIS ERROR  ")
+    info.equit()

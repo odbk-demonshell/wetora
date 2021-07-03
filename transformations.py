@@ -1,10 +1,21 @@
 #!/usr/bin/env python
 import whois # pip install python-whois
+from printer import printer
+import sys
 
 class transformations:
+	def __init__(self):
+		self.alert = printer()
+
 	def domainToOrg(self, domain_name):
-		whois_info = whois.whois(domain_name)
-		print("Organization Name:", whois_info.org)
+		try:
+			whois_info = whois.whois(domain_name)
+			#print(whois_info)
+			return whois_info.org
+		except:
+			print("Unexpected error:", sys.exc_info()[0])
+			raise
+		return None
 
 
 
